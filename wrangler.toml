@@ -1,3 +1,8 @@
 name = "my-flue-worker-2"
 main = "src/index.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2026-06-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["FlueRegistry", "FlueHelloWorkflow"]
