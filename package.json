@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "flue dev --target cloudflare",
     "build": "flue build --target cloudflare",
-    "deploy": "wrangler deploy --config dist/hello-worker/wrangler.json"
+    "deploy": "wrangler deploy --config dist/my_flue_worker_2/wrangler.json",
+    "secret": "npx wrangler secret put GEMINI_API_KEY --config dist/my_flue_worker_2/wrangler.json"
   },
   "dependencies": {
     "@flue/runtime": "^1.0.0-beta.9",
