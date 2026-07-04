@@ -1,0 +1,30 @@
+{
+  "name": "my-flue-worker-2",
+  "main": ".flue-vite/_entry.ts",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "FlueRegistry",
+        "FlueHelloWorkflow"
+      ]
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "FLUE_HELLO_WORKFLOW",
+        "class_name": "FlueHelloWorkflow"
+      },
+      {
+        "name": "FLUE_REGISTRY",
+        "class_name": "FlueRegistry"
+      }
+    ]
+  },
+  "$schema": "./node_modules/wrangler/config-schema.json"
+}
