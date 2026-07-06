@@ -38,6 +38,7 @@ import { registerApiProvider, registerProvider } from '@flue/runtime';
 
 
 import * as workflow_hello_0 from "C:/Users/sp/Downloads/my-flue-worker-2/.flue/workflows/hello.ts";
+import * as workflow_translate_1 from "C:/Users/sp/Downloads/my-flue-worker-2/.flue/workflows/translate.ts";
 
 
 
@@ -119,6 +120,7 @@ const agentModules = {
 };
 const workflowModules = {
   "hello": workflow_hello_0,
+  "translate": workflow_translate_1,
 };
 const channelModules = {
 
@@ -129,10 +131,11 @@ const agentIdentities = {
 };
 const workflowIdentities = {
   "hello": { bindingName: "FLUE_HELLO_WORKFLOW", className: "FlueHelloWorkflow" },
+  "translate": { bindingName: "FLUE_TRANSLATE_WORKFLOW", className: "FlueTranslateWorkflow" },
 };
 
 const userCloudflare = {};
-const reservedCloudflareExportNames = new Set(["FlueHelloWorkflow","FlueRegistry"]);
+const reservedCloudflareExportNames = new Set(["FlueHelloWorkflow","FlueTranslateWorkflow","FlueRegistry"]);
 for (const name of Object.keys(userCloudflare)) {
   if (name === 'default') continue;
   if (reservedCloudflareExportNames.has(name)) {
@@ -430,6 +433,24 @@ const FlueHelloWorkflow = class FlueHelloWorkflow extends workflowExtension0.bas
 };
 const WrappedFlueHelloWorkflow = workflowExtension0.wrap(FlueHelloWorkflow);
 export { WrappedFlueHelloWorkflow as FlueHelloWorkflow };
+
+const workflowExtension1 = resolveCloudflareExtension(workflowModules["translate"], "translate", 'Workflow');
+const FlueTranslateWorkflow = class FlueTranslateWorkflow extends workflowExtension1.base(Agent) {
+  async onRequest(request) {
+    return dispatchWorkflow(request, this, "translate");
+  }
+
+  async onFiberRecovered(ctx) {
+    if (ctx.name?.startsWith('flue:workflow:')) {
+      return handleFlueWorkflowFiberRecovered(ctx, this, "translate");
+    }
+    if (typeof super.onFiberRecovered === 'function') {
+      return super.onFiberRecovered(ctx);
+    }
+  }
+};
+const WrappedFlueTranslateWorkflow = workflowExtension1.wrap(FlueTranslateWorkflow);
+export { WrappedFlueTranslateWorkflow as FlueTranslateWorkflow };
 
 export { FlueRegistry };
 

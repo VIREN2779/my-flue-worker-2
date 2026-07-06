@@ -12,6 +12,12 @@
         "FlueRegistry",
         "FlueHelloWorkflow"
       ]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": [
+        "FlueTranslateWorkflow"
+      ]
     }
   ],
   "durable_objects": {
@@ -19,6 +25,10 @@
       {
         "name": "FLUE_HELLO_WORKFLOW",
         "class_name": "FlueHelloWorkflow"
+      },
+      {
+        "name": "FLUE_TRANSLATE_WORKFLOW",
+        "class_name": "FlueTranslateWorkflow"
       },
       {
         "name": "FLUE_REGISTRY",

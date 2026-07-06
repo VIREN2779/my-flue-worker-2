@@ -6,3 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["FlueRegistry", "FlueHelloWorkflow"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["FlueTranslateWorkflow"]
